@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>LED Controls</h2>
+            <button id="connect-button" class="btn refresh-btn">
+                <span class="material-icons">refresh</span>
+                Connect
+            </button>
+        </div>
+        
+        <div class="card-content">
+            <div class="led-programs">
+                <div class="program-button" data-program="a">
+                    <div class="icon">
+                        <span class="material-icons">blur_on</span>
+                    </div>
+                    <span class="label">Moving Dot</span>
+                </div>
+                
+                <div class="program-button" data-program="b">
+                    <div class="icon">
+                        <span class="material-icons">gradient</span>
+                    </div>
+                    <span class="label">Rainbow</span>
+                </div>
+                
+                <div class="program-button" data-program="c">
+                    <div class="icon">
+                        <span class="material-icons">lightbulb_outline</span>
+                    </div>
+                    <span class="label">Off</span>
+                </div>
+
+                <div class="program-button" data-program="d">
+                    <div class="icon">
+                        <span class="material-icons">auto_awesome</span>
+                    </div>
+                    <span class="label">Confetti</span>
+                </div>
+
+                <div class="program-button" data-program="e">
+                    <div class="icon">
+                        <span class="material-icons">local_fire_department</span>
+                    </div>
+                    <span class="label">Fire</span>
+                </div>
+
+                <div class="program-button" data-program="f">
+                    <div class="icon">
+                        <span class="material-icons">waves</span>
+                    </div>
+                    <span class="label">Waves</span>
+                </div>
+
+                <div class="program-button" data-program="g">
+                    <div class="icon">
+                        <span class="material-icons">stars</span>
+                    </div>
+                    <span class="label">Sparkles</span>
+                </div>
+
+                <div class="program-button" data-program="h">
+                    <div class="icon">
+                        <span class="material-icons">flash_on</span>
+                    </div>
+                    <span class="label">Pulse</span>
+                </div>
+
+                <div class="program-button" data-program="i">
+                    <div class="icon">
+                        <span class="material-icons">flare</span>
+                    </div>
+                    <span class="label">Twinkles</span>
+                </div>
+
+                <div class="program-button" data-program="j">
+                    <div class="icon">
+                        <span class="material-icons">notifications_active</span>
+                    </div>
+                    <span class="label">Police</span>
+                </div>
+
+                <div class="program-button auto-mode" data-program="x">
+                    <div class="icon">
+                        <span class="material-icons">shuffle</span>
+                    </div>
+                    <span class="label">Auto Mode</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Status</h2>
+        </div>
+        <div class="card-content">
+            <div id="status-message">Ready</div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast for notifications -->
+<div id="toast" class="toast hidden">
+    <span id="toast-message">Message</span>
+</div>
+{% endblock %}
