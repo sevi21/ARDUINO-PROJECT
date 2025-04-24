@@ -157,6 +157,7 @@ function getProgramName(command) {
         'h': 'Pulse',
         'i': 'Twinkles',
         'j': 'Police Lights',
+        'k': 'Romantic',
         'x': 'Auto Mode'
     };
     

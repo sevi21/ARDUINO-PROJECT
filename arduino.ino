@@ -47,6 +47,7 @@ void setup() {
   Serial.println("h - Pulse effect");
   Serial.println("i - Rainbow twinkles");
   Serial.println("j - Police lights"); 
+  Serial.println("k - Romantic mood");
   Serial.println("x - Auto mode (cycles through all programs)");
 }
 
@@ -54,7 +55,7 @@ void loop() {
   
   if (Serial.available() > 0) {
     char input = Serial.read();
-    if ((input >= 'a' && input <= 'j') || input == 'x') {
+    if ((input >= 'a' && input <= 'k') || input == 'x') {
       selectedProgram = input;
       Serial.print("Program spremenjen na: ");
       Serial.println(selectedProgram);
@@ -94,6 +95,7 @@ void loop() {
     case 'h': programH(); break;
     case 'i': programI(); break;
     case 'j': programJ(); break;
+    case 'k': programK(); break;
     default: programA(); break;
   }
   
@@ -338,4 +340,69 @@ void programJ() {
   
   FastLED.show();
   delay(10); 
+}
+
+
+void programK() {
+  
+  static uint8_t hueBase = 0;  
+  static uint8_t pulseValue = 128;
+  static int8_t pulseChange = 1;
+  static uint16_t sparkleTimer = 0;
+  
+  
+  pulseValue += pulseChange;
+  if (pulseValue >= 200 || pulseValue <= 100) {
+    pulseChange = -pulseChange;
+  }
+  
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+
+    uint8_t hue = hueBase + map(sin8(i * 2 + gHue), 0, 255, 0, 10);
+    
+
+    uint8_t sat = 255;
+    uint8_t val = map(sin8(i + pulseValue), 0, 255, 50, pulseValue);
+    
+    leds[i] = CHSV(hue, sat, val);
+  }
+  
+
+  sparkleTimer++;
+  if (sparkleTimer > 5) {
+    sparkleTimer = 0;
+    if (random8() < 30) {  
+      int pos = random16(NUM_LEDS);
+      leds[pos] = CHSV(15, 130, 255);  
+    }
+    if (random8() < 15) {  
+      int pos = random16(NUM_LEDS);
+      leds[pos] = CHSV(0, 0, 255);  
+    }
+  }
+  
+  
+  uint8_t numSpots = 4;
+  for (int i = 0; i < numSpots; i++) {
+    int pos = (millis() / 60 + (NUM_LEDS / numSpots * i)) % NUM_LEDS;
+    
+    // Create a soft glow around each spot
+    for (int j = -4; j <= 4; j++) {
+      int spotPos = (pos + j + NUM_LEDS) % NUM_LEDS;
+      int brightness = 255 - abs(j) * 50;
+      if (brightness > 0) {
+        // Deep red glow spots
+        leds[spotPos] += CHSV(5, 255, brightness); 
+      }
+    }
+  }
+  
+  
+  EVERY_N_SECONDS(15) {
+    hueBase = (hueBase + 1) % 10; 
+  }
+  
+  FastLED.show();
+  delay(20);
 }

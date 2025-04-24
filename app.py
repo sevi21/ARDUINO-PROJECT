@@ -72,7 +72,7 @@ def send_command():
     
     logger.info(f"Received command request: {command}")
     
-    if not command or command not in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'x']:
+    if not command or command not in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j','k', 'x']:
         logger.error(f"Invalid command received: {command}")
         return jsonify({"status": "error", "message": "Invalid command"}), 400
     

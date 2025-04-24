@@ -179,6 +179,27 @@
   .toast.info {
     background-color: var(--primary-color);
   }
+
+  .program-button.romantic {
+    background-color: tomato;
+    color: white;
+    border-color: #ff3814;
+    width: 200%;
+  }
+  
+  .program-button.romantic:hover {
+    background-color: #e74c3c;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+  }
+  
+  .program-button.romantic .icon {
+    color: white;
+  }
+  
+  .program-button.romantic.active {
+    border-color: #c0392b;
+    background-color: #c0392b;
+  }
   
   @media (max-width: 600px) {
     .led-programs {
